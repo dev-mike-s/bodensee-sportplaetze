@@ -1,0 +1,56 @@
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+
+## Project Description
+
+Main goal of this project to address the issues for finding sports places. If an online users looks up for example:
+"basketballplatz konstanz" the user will find not many results and also bad results. My app focuses on: 
+
+-SEO optimized results
+-finding qualitative results with (pictures, details, comment section)
+-community driven (a user can anonymously tick on a calendar to show that he will be there at monday 5pm f.e.)
+
+##  Versioning
+
+Wir verwenden [SemVer](http://semver.org/) für die Versionierung.
+
+### Current versions
+- **Node.js:** `^22.21.1` 
+- **Next.js:** `16.1.7`
+- **TypeScript:** `5.9.3`
+
+## Getting Started
+
+First, run the development server:
+
+```bash
+pnpm dev
+```
+
+```bash
+next dev    -> starts the development server using Turbopack (default bundler)
+next build  -> builds the application for production
+next start  -> starts the production server
+eslint      -> runs ESLint
+```
+
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+
+## Learn More
+
+To learn more about Next.js, take a look at the following resources:
+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
