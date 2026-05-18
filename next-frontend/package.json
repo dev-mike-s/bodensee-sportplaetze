@@ -10,7 +10,9 @@
     "lint:fix": "eslint --fix"
   },
   "dependencies": {
+    "lucide-react": "^1.14.0",
     "next": "16.1.7",
+    "postcss": "^8.5.14",
     "react": "19.2.3",
     "react-dom": "19.2.3"
   },
