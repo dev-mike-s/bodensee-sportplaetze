@@ -2,12 +2,12 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Project Description
 
-Main goal of this project to address the issues for finding sports places. If an online users looks up for example:
-"basketballplatz konstanz" the user will find not many results and also bad results. My app focuses on: 
+This issue addresses the main issue: for finding sports places near town. For example if an online user looks up online:
+'basketballplatz konstanz' not many results are found and also in a bad quality. My app focuses on: 
 
--SEO optimized results
--finding qualitative results with (pictures, details, comment section)
--community driven (a user can anonymously tick on a calendar to show that he will be there at monday 5pm f.e.)
+-SEO optimized results ('tischtennis platte konstanz -> '5 Ergebnisse in 'konstanz' gefunden')
+-qualitative results (with, pictures, details, comment section)
+-community driven (a user can anonymously tick on a calendary, to show that he will be there at monday 5pm f.e.)
 
 ##  Versioning
 
