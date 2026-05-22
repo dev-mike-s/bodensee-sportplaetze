@@ -1,0 +1,12 @@
+
+Tailwind übernimmt den Alltag:
+-Layout (Flex, Grid, Abstände)
+-Typografie (Schriftgrößen, Farben)
+-Breakpoints für Responsiveness
+-Schnelle Hover/Transition-Effekte direkt im JSX
+
+CSS Modules für das Besondere:
+-Komplexe Keyframe-Animationen
+-Sehr spezifische, mehrstufige :hover/:focus-within-Kaskaden
+-Alles, wo "Jetzt wird mir der JSX mit 15 Klassen zu unübersichtlich"
+-Dinge, die Tailwind nicht kann oder wo die Logik lieber in einer separaten Datei kapseln
