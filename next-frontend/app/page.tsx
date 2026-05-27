@@ -4,7 +4,7 @@
 import SearchBar from "../components/searchBar";
 
 export default function HomePage() {
-    
+
     return (
         <section className="mt-10">
             <div className="text-center">
