@@ -6,3 +6,61 @@ generator client {
 datasource db {
   provider = "postgresql"
 }
+
+model localities {
+  id       Int        @id @default(autoincrement())
+  name     String     @unique @db.VarChar(30)
+  zipcode  Int
+  type     type?
+  location location[]
+}
+
+model location {
+  id          Int          @id @default(autoincrement())
+  name        String?      @db.VarChar(30)
+  street      String?      @db.VarChar(30)
+  locality_id Int
+  localities  localities   @relation(fields: [locality_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  sportfield  sportfield[]
+}
+
+model sportfield {
+  id                   Int                    @id @default(autoincrement())
+  location_id          Int?
+  name                 String?                @db.VarChar(30)
+  floor                String?                @db.VarChar(20)
+  text                 String?                @db.VarChar(50)
+  rating               Int
+  location             location?              @relation(fields: [location_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  sportfield_sporttype sportfield_sporttype[]
+  sportfieldimage      sportfieldimage[]
+}
+
+model sportfield_sporttype {
+  sportfield_id Int
+  sporttype_id  Int
+  sportfield    sportfield @relation(fields: [sportfield_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  sporttype     sporttype  @relation(fields: [sporttype_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@id([sportfield_id, sporttype_id])
+}
+
+model sportfieldimage {
+  sportfield_id Int
+  url           String?    @db.VarChar(200)
+  sort_order    Int?
+  id            Int        @id @default(autoincrement())
+  sportfield    sportfield @relation(fields: [sportfield_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model sporttype {
+  id                   Int                    @id @default(autoincrement())
+  name                 String?                @db.VarChar(30)
+  sportfield_sporttype sportfield_sporttype[]
+}
+
+enum type {
+  Stadt
+  Stadtteil
+  Gemeinde
+}
