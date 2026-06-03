@@ -1,3 +1,5 @@
+/*
+
 'use server'
 
 export async function handleSearch(city: string, sport: string) {
@@ -14,3 +16,5 @@ export async function handleSearch(city: string, sport: string) {
         </>
     )
 }
+
+*/

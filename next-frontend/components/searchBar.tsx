@@ -1,6 +1,6 @@
 import styles from './searchBar.module.css';
 import {useState, SubmitEvent} from "react";
-import {handleSearch} from '../lib/actions';
+import {handleSearch} from '../app/actions/search';
 
 //const initialState = {city: "", sport: "", state: ""};
 
@@ -31,7 +31,7 @@ export default function SearchBar() {
         try {
             if (formCity != null && formSport != null) {
                 const result = await handleSearch(formCity, formSport);
-                console.log("angekommen");
+                console.log(result);
             }
         } catch (error) {
             console.error(error);
