@@ -46,10 +46,10 @@ model sportfield_sporttype {
 }
 
 model sportfieldimage {
+  id            Int        @id @default(autoincrement())
   sportfield_id Int
   url           String?    @db.VarChar(200)
   sort_order    Int?
-  id            Int        @id @default(autoincrement())
   sportfield    sportfield @relation(fields: [sportfield_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
 
