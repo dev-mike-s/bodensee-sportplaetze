@@ -1,6 +1,6 @@
 import styles from './searchBar.module.css';
 import {useState, SubmitEvent} from "react";
-import {handleSearch} from '../app/actions/search';
+import {handleSearch} from '@/actions/search';
 
 //const initialState = {city: "", sport: "", state: ""};
 
@@ -8,6 +8,8 @@ export default function SearchBar() {
 
     const [city, setCity] = useState("");
     const [sport, setSport] = useState("");
+    //const [res, setRes] = useState("");
+
     //const [state, formAction] = useFormState(search, initialState);
 
     // Event Handler
@@ -31,7 +33,8 @@ export default function SearchBar() {
         try {
             if (formCity != null && formSport != null) {
                 const result = await handleSearch(formCity, formSport);
-                console.log(result);
+                console.log("LOG: result angekommen in searchBar.tsx:");
+                //if (result) { setRes(result); }
             }
         } catch (error) {
             console.error(error);
@@ -82,7 +85,9 @@ export default function SearchBar() {
             </div>
             {city ? (
                 <h2 className="mt-8 text-2xl">Ergebnisse für &quot;{city}&quot; , &quot;{sport}&quot; : </h2>
-            ) : null}
+            ) : null
+                <p>
+            }
         </>
     )
 }
