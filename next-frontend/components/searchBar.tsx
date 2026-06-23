@@ -1,15 +1,28 @@
 import styles from './searchBar.module.css';
-import {useState, SubmitEvent} from "react";
+import {useState, SubmitEvent, useRef} from "react";
 import {handleSearch} from '@/actions/search';
+import {sportfield} from '../models/ui-models';
 
 //const initialState = {city: "", sport: "", state: ""};
+
+/*
+interface ISportfield {
+    id: number;
+    name: string | null;
+    rating: number;
+    city: string;
+    street: string | null;
+    sports: string[] | null;
+    images: string[];
+}
+*/
 
 export default function SearchBar() {
 
     const [city, setCity] = useState("");
     const [sport, setSport] = useState("");
+    const [searchResult, setSearchResult] = useState<ISportfield[] | null>(null);
     //const [res, setRes] = useState("");
-
     //const [state, formAction] = useFormState(search, initialState);
 
     // Event Handler
@@ -32,9 +45,12 @@ export default function SearchBar() {
         const formSport = event.currentTarget.sports.value;
         try {
             if (formCity != null && formSport != null) {
-                const result = await handleSearch(formCity, formSport);
-                console.log("LOG: result angekommen in searchBar.tsx:");
-                //if (result) { setRes(result); }
+                const serverResult = await handleSearch(formCity, formSport);
+                setSearchResult(serverResult);
+                console.log("LOG: 'searchBar.tsx ");
+                console.log(serverResult);
+
+                //if (searchResult) { setRes(searchResult); }
             }
         } catch (error) {
             console.error(error);
@@ -83,11 +99,26 @@ export default function SearchBar() {
                     <button className={styles.button} type="submit">Suchen</button>
                 </form>
             </div>
-            {city ? (
-                <h2 className="mt-8 text-2xl">Ergebnisse für &quot;{city}&quot; , &quot;{sport}&quot; : </h2>
-            ) : null
-                <p>
-            }
+            <div>
+                {city ? ( <h2 className="mt-8 text-2xl">Ergebnisse für &quot;{city}&quot; , &quot;{sport}&quot; : </h2>) : null}
+                <div style={{ padding:10 }}>
+                <ul >
+                    { (searchResult) ?
+                        (searchResult.map(res =>
+                                <>
+                                    <li key={res.city}>{res.city}</li>
+                                    <li key={res.street}>{res.street}</li>
+                                    <li key={res.id}>{res.name}</li>
+                                    <li key={res.sports[0]}>{res.sports[0]}</li>
+                                    <li key={res.rating}>{res.rating} Sterne</li>
+                                    <li key={res.images}>{res.images}</li>
+                                </>
+                            )
+                        ) : <p>Keine Einträge gefunden probiers nochmal!</p>
+                    }
+                </ul>
+                </div>
+            </div>
         </>
     )
 }
