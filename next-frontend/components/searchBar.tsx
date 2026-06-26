@@ -1,11 +1,11 @@
 import styles from './searchBar.module.css';
 import {useState, SubmitEvent, useRef} from "react";
 import {handleSearch} from '@/actions/search';
-import {sportfield} from '../models/ui-models';
+import {RawSportfield} from '@/actions/search';
 
 //const initialState = {city: "", sport: "", state: ""};
 
-/*
+
 interface ISportfield {
     id: number;
     name: string | null;
@@ -15,7 +15,7 @@ interface ISportfield {
     sports: string[] | null;
     images: string[];
 }
-*/
+
 
 export default function SearchBar() {
 
@@ -24,6 +24,8 @@ export default function SearchBar() {
     const [searchResult, setSearchResult] = useState<ISportfield[] | null>(null);
     //const [res, setRes] = useState("");
     //const [state, formAction] = useFormState(search, initialState);
+
+    const header = ["Name", "city", "street", "sports", "rating"];
 
     // Event Handler
     // ChangeEvent versus 'onInput=' => Typ-Fehler bei onInput.
@@ -72,6 +74,7 @@ export default function SearchBar() {
                            className="mt-2 mb-4 rounded-md bg-blue-100 outline-blue-500"
                            required
                     />
+
                     <fieldset className="mb-4">
                         <label className="pt-4">Sportarten auswählen</label>
                         <br></br>
@@ -84,7 +87,7 @@ export default function SearchBar() {
                         <label htmlFor="tischtennis">
                             Tischtennis
                         </label>
-                        <br/>
+                        <br></br>
                         <input onChange={handleSport}
                                type="radio"
                                name="sports"
@@ -94,25 +97,25 @@ export default function SearchBar() {
                         <label htmlFor="basketball">
                             Basketball
                         </label>
-                        <br/>
+                        <br></br>
                     </fieldset>
+
                     <button className={styles.button} type="submit">Suchen</button>
                 </form>
             </div>
             <div>
-                {city ? ( <h2 className="mt-8 text-2xl">Ergebnisse für &quot;{city}&quot; , &quot;{sport}&quot; : </h2>) : null}
+                {city ? ( <h3 className="mt-10 text-2xl">Ergebnisse für &quot;<i>{city}</i>&quot; , &quot;<i>{sport}</i>&quot; : </h3>) : null}
                 <div style={{ padding:10 }}>
                 <ul >
                     { (searchResult) ?
-                        (searchResult.map(res =>
-                                <>
-                                    <li key={res.city}>{res.city}</li>
-                                    <li key={res.street}>{res.street}</li>
-                                    <li key={res.id}>{res.name}</li>
-                                    <li key={res.sports[0]}>{res.sports[0]}</li>
-                                    <li key={res.rating}>{res.rating} Sterne</li>
-                                    <li key={res.images}>{res.images}</li>
-                                </>
+
+
+                        (searchResult.map( (res: ISportfield) =>
+                            <>
+                                <li key={res.street}>{res.street}</li>
+                                <li key={res.id}>{res.name}</li>
+                                <li key={res.rating}>{res.rating} Sterne</li>
+                            </>
                             )
                         ) : <p>Keine Einträge gefunden probiers nochmal!</p>
                     }

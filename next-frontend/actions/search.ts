@@ -2,7 +2,7 @@
 
 import { prisma } from "@/lib/prisma";
 
-type RawSportfield = {
+export type RawSportfield = {
     id: number;
     name: string | null;
     rating: number;
@@ -24,8 +24,14 @@ type RawSportfield = {
         sporttype: {
             id: number;
             name: string | null;
-        };
-    }[];
+        }
+    } [],
+    sportfieldimage: {
+        id: number;
+        sportfield_id: number;
+        url: string | null;
+        sort_order: number | null;
+    }  []
 };
 
 export async function handleSearch(city: string, sport: string) {
@@ -52,8 +58,9 @@ export async function handleSearch(city: string, sport: string) {
                     localities: {
                         name: city
                     }
-                }
+                },
             },
+
             include: {
                 location: {
                     include: {
@@ -64,8 +71,10 @@ export async function handleSearch(city: string, sport: string) {
                     include: {
                         sporttype: true
                     }
-                }
+                },
+                sportfieldimage: true,
             },
+
         });
         console.log("LOG: 'search.ts': " + "\n" + result);
 
@@ -75,13 +84,13 @@ export async function handleSearch(city: string, sport: string) {
         return null;
     }
 
-    return result!.map((f: RawSportfield) => ({
-        id: f.id,
-        name: f.name,
-        rating: f.rating,
-        city: f.location?.localities.name ?? "",
-        street: f.location?.street ?? "",
-        sports: f.sportfield_sporttype.map(s => s.sporttype.name ?? ""),
-        images: [],
+    return result!.map((r: RawSportfield) => ({
+        id: r.id,
+        name: r.name,
+        rating: r.rating,
+        city: r.location?.localities.name ?? "",
+        street: r.location?.street ?? "",
+        sports: r.sportfield_sporttype.map(s => s.sporttype.name ?? ""),
+        images: r.sportfieldimage.map(i => i.url ?? ""),
     }));
 }
