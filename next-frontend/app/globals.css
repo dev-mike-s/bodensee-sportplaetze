@@ -1,40 +1,87 @@
-
 @import "tailwindcss";
 
-:root {
-    --background: #ffffff;
-    --foreground: #171717;
-}
+:root { --background: #ffffff; --foreground: #171717; --heading: #43992d }
 
 @theme inline {
     --color-background: var(--background);
     --color-foreground: var(--foreground);
+    /*
     --font-sans: var(--font-geist-sans);
     --font-mono: var(--font-geist-mono);
+     */
 }
 
-@media (prefers-color-scheme: dark) {
-    :root {
-        --background: #0a0a0a;
-        --foreground: #ededed;
-    }
-}
+@media (prefers-color-scheme: dark) { :root {--background: #0a0a0a; --foreground: #ededed;} }
 
-@layer base {
-    button:not(:disabled), [role="button"]:not(:disabled) {
-        cursor: pointer;
-    }
-}
+@layer base { button:not(:disabled), [role="button"]:not(:disabled) {cursor: pointer;} }
+
+/* --- MOBILE-FIRST --- */
 
 body {
     background: var(--background);
     color: var(--foreground);
     font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px; /* mobile base */
     height: 100vh;
     width: 100vw;
+    overflow-y: auto;
 }
 
-html {
-    height: 100vh;
-    width: 100vw;
+html { height: 100vh; width: 100vw; }
+
+footer {
+    position:absolute;
+    left:0;
+    bottom:0;
+    right:0;
+}
+
+/* --- HEADINGS --- */
+h1 {
+    font-size: 1.6rem;
+    font-weight: 800;
+    margin-bottom: 24px;
+    color: var(--heading);
+    text-align: center;
+}
+h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-top: 20px;
+    margin-bottom: 12px;
+}
+/* --- HEADINGS END --- */
+
+table, th, td { border: 1px solid; }
+
+section { margin-left: 5%; margin-right: 5%; }
+
+/* --- MOBILE FIRST END --- */
+
+/* --- MEDIA QUERY TABLET MOBILE --- */
+@media (min-width: 768px) {
+    body { font-size: 1.2rem; word-break: break-word; }
+    h1 { font-size: 1.9rem; }
+    h3 { font-size: 1.3rem; }
+}
+
+/* --- MEDIA QUERY TABLET/LAPTOP --- */
+@media (min-width: 1024px) {
+    body { font-size: 1.4rem; }
+    h1 { font-size: 2.2rem; }
+    h3 { font-size: 1.4rem; }
+}
+
+/* --- MEDIA QUERY LAPTOP/DESKTOP --- */
+@media (min-width: 1280px) {
+    body { font-size: 1.6rem; }
+    h1 { font-size: 2.4rem; }
+    h3 { font-size: 1.5rem; }
+}
+
+/* --- MEDIA QUERY DESKTOP/LARGE --- */
+@media (min-width: 1536px) {
+    body { font-size: 1.8rem; }
+    h1 { font-size: 2.7rem; }
+    h3 { font-size: 1.7rem; }
 }
