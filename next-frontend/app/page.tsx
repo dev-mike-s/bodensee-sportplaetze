@@ -6,7 +6,7 @@ import SearchBar from "../components/searchBar";
 export default function HomePage() {
 
     return (
-        <section className="mt-10">
+        <main className="mt-10">
             <div className="text-center">
 
                 <h1 className="mt-10">
@@ -22,6 +22,6 @@ export default function HomePage() {
                 <SearchBar />
 
             </div>
-        </section>
+        </main>
     )
 }

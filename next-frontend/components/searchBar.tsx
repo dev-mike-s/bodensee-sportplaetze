@@ -1,5 +1,5 @@
 import styles from './searchBar.module.css';
-import {useState, SubmitEvent, useRef} from "react";
+import {useState, SubmitEvent, useRef, Fragment} from "react";
 import {handleSearch} from '@/actions/search';
 import {RawSportfield} from '@/actions/search';
 
@@ -51,7 +51,6 @@ export default function SearchBar() {
                 setSearchResult(serverResult);
                 console.log("LOG: 'searchBar.tsx ");
                 console.log(serverResult);
-
                 //if (searchResult) { setRes(searchResult); }
             }
         } catch (error) {
@@ -103,23 +102,29 @@ export default function SearchBar() {
                     <button className={styles.button} type="submit">Suchen</button>
                 </form>
             </div>
+
             <div>
                 {city ? ( <h3 className="mt-10 text-2xl">Ergebnisse für &quot;<i>{city}</i>&quot; , &quot;<i>{sport}</i>&quot; : </h3>) : null}
-                <div style={{ padding:10 }}>
-                <ul >
-                    { (searchResult) ?
+                <div style={{ padding:10 }}>    
+                    {searchResult === null && (
+                        <p>Bitte gib einen Suchbegriff ein.</p>
+                    )}
 
+                    {searchResult !== null && searchResult.length > 0 && (
+                        <ul>
+                            {searchResult.map((res: ISportfield) => (
+                                <Fragment key={res.id}>
+                                    <li>{res.street}</li>
+                                    <li>{res.name}</li>
+                                    <li>{res.rating} Sterne</li>
+                                </Fragment>
+                            ))}
+                        </ul>
+                    )}
 
-                        (searchResult.map( (res: ISportfield) =>
-                            <>
-                                <li key={res.street}>{res.street}</li>
-                                <li key={res.id}>{res.name}</li>
-                                <li key={res.rating}>{res.rating} Sterne</li>
-                            </>
-                            )
-                        ) : <p>Keine Einträge gefunden probiers nochmal!</p>
-                    }
-                </ul>
+                    {searchResult !== null && searchResult.length === 0 && (
+                        <p>Keine Einträge gefunden, probiers nochmal!</p>
+                    )}
                 </div>
             </div>
         </>

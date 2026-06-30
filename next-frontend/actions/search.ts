@@ -76,7 +76,8 @@ export async function handleSearch(city: string, sport: string) {
             },
 
         });
-        console.log("LOG: 'search.ts': " + "\n" + result);
+        console.log("LOG: 'search.ts': ");
+        console.log(result);
 
     } catch (error) {
         console.error("LOG: Fehler: " );
