@@ -54,7 +54,8 @@ h3 {
 
 table, th, td { border: 1px solid; }
 
-section { margin-left: 5%; margin-right: 5%; }
+/* main instead of section */
+/* section { margin-left: 5%; margin-right: 5%; } */
 
 /* --- MOBILE FIRST END --- */
 
