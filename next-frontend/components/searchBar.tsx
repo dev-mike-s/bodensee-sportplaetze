@@ -1,12 +1,12 @@
+
+'use client'
+
 import styles from './searchBar.module.css';
 import {useState, SubmitEvent, useRef, Fragment} from "react";
 import {handleSearch} from '@/actions/search';
-import {RawSportfield} from '@/actions/search';
+import DataTable from './dataTable';
 
-//const initialState = {city: "", sport: "", state: ""};
-
-
-interface ISportfield {
+export interface ISportfield {
     id: number;
     name: string | null;
     rating: number;
@@ -16,20 +16,15 @@ interface ISportfield {
     images: string[];
 }
 
-
 export default function SearchBar() {
 
     const [city, setCity] = useState("");
     const [sport, setSport] = useState("");
     const [searchResult, setSearchResult] = useState<ISportfield[] | null>(null);
-    //const [res, setRes] = useState("");
-    //const [state, formAction] = useFormState(search, initialState);
-
-    const header = ["Name", "city", "street", "sports", "rating"];
 
     // Event Handler
     // ChangeEvent versus 'onInput=' => Typ-Fehler bei onInput.
-    //todo: city and sport is interesing for statistics, send it to the db directly.
+    //todo: city and sport für Statistiken extra an die DB schicken..
     const handleLocation = (e: React.ChangeEvent<HTMLInputElement>) => {
         setCity(e.target.value);
     }
@@ -49,7 +44,7 @@ export default function SearchBar() {
             if (formCity != null && formSport != null) {
                 const serverResult = await handleSearch(formCity, formSport);
                 setSearchResult(serverResult);
-                console.log("LOG: 'searchBar.tsx ");
+                console.log("LOG 'searchBar.tsx' :");
                 console.log(serverResult);
                 //if (searchResult) { setRes(searchResult); }
             }
@@ -105,26 +100,12 @@ export default function SearchBar() {
 
             <div>
                 {city ? ( <h3 className="mt-10 text-2xl">Ergebnisse für &quot;<i>{city}</i>&quot; , &quot;<i>{sport}</i>&quot; : </h3>) : null}
-                <div style={{ padding:10 }}>    
-                    {searchResult === null && (
-                        <p>Bitte gib einen Suchbegriff ein.</p>
-                    )}
-
-                    {searchResult !== null && searchResult.length > 0 && (
-                        <ul>
-                            {searchResult.map((res: ISportfield) => (
-                                <Fragment key={res.id}>
-                                    <li>{res.street}</li>
-                                    <li>{res.name}</li>
-                                    <li>{res.rating} Sterne</li>
-                                </Fragment>
-                            ))}
-                        </ul>
-                    )}
-
-                    {searchResult !== null && searchResult.length === 0 && (
-                        <p>Keine Einträge gefunden, probiers nochmal!</p>
-                    )}
+                <div style={{ padding:10 }}>
+                    { searchResult ? (
+                        <DataTable data={searchResult}>
+                        </DataTable>
+                        ) : null
+                    }
                 </div>
             </div>
         </>
