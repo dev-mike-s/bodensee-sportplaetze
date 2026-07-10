@@ -4,7 +4,7 @@
 import styles from './searchBar.module.css';
 import {useState, SubmitEvent, useRef, Fragment} from "react";
 import {handleSearch} from '@/actions/search';
-import DataTable from './dataTable';
+import DataCard from './dataCard';
 
 export interface ISportfield {
     id: number;
@@ -98,12 +98,12 @@ export default function SearchBar() {
                 </form>
             </div>
 
-            <div>
-                {city ? ( <h3 className="mt-10 text-2xl">Ergebnisse für &quot;<i>{city}</i>&quot; , &quot;<i>{sport}</i>&quot; : </h3>) : null}
-                <div style={{ padding:10 }}>
+            <div className="content-center mt-20">
+                {city ? ( <h3 className="text-2xl">Ergebnisse für &quot;<i>{city}</i>&quot; , &quot;<i>{sport}</i>&quot; : </h3>) : null}
+                <div style={{ padding:10 }} className="mt-15">
                     { searchResult ? (
-                        <DataTable data={searchResult}>
-                        </DataTable>
+                        <DataCard data={searchResult}>
+                        </DataCard>
                         ) : null
                     }
                 </div>
