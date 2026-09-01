@@ -58,10 +58,11 @@ pnpm prisma db pull
 pnpm prisma generate
 ```
 
-## Learn More
+## References
 
 To learn more about Next.js, take a look at the following resources:
 
+- [pnpm docs](https://generalistprogrammer.com/cheatsheets/pnpm-commands) - manual for pnpm
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
